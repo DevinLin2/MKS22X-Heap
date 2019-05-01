@@ -16,8 +16,17 @@ public class MyHeap {
       }
     }
   }
-  private static void pushUp(int[]data,int index) {
-
+  private static void pushUp(int[] data, int index) {
+    int newIndex = -1;
+    int oldData = data[index];
+    if (index >= 0 && index <= data.length - 1) {
+      if ((index - 1) / 2 >= 0 && data[(index - 1) / 2] < data[index]) {
+        newIndex = (index - 1) / 2;
+        data[index] = data[newIndex];
+        data[newIndex] = oldData;
+        pushUp(data, newIndex);
+      }
+    }
   }
   public static void heapify(int[]) {
 
