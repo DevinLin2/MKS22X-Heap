@@ -6,6 +6,8 @@ public class MyHeap {
     System.out.println(Arrays.toString(data));
     heapify(data);
     System.out.println(Arrays.toString(data));
+    heapsort(data);
+    System.out.println(Arrays.toString(data));
   }
   private static void pushDown(int[] data, int size, int index) {
     int newIndex = -1;
@@ -18,8 +20,6 @@ public class MyHeap {
           newIndex = index * 2 + 1;
         }
       }
-      System.out.println(oldData);
-      System.out.println(newIndex);
       if (newIndex != -1) {
         data[index] = data[newIndex];
         data[newIndex] = oldData;
@@ -44,8 +44,15 @@ public class MyHeap {
       pushDown(data, data.length, i);
     }
   }
-  // public static void heapsort(int[] data) {
-  //   heapify(data);
-  //
-  // }
+  public static void heapsort(int[] data) {
+    heapify(data);
+    int size = data.length;
+    for (int i = data.length - 1; i >= 0; i--) {
+      int temp = data[0];
+      data[0] = data[i];
+      data[i] = temp;
+      pushDown(data, size, 0);
+      size--;
+    }
+  }
 }
